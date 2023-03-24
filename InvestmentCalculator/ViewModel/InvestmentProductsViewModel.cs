@@ -1,5 +1,4 @@
-﻿using InvestmentCalculator.Data;
-using System;
+﻿using System;
 using System.ComponentModel;
 
 namespace InvestmentCalculator.ViewModel
