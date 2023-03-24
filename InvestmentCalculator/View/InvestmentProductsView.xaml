@@ -48,15 +48,15 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="10">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button HorizontalAlignment="Right" Margin="20 0">Calculate</Button>
+                <Button HorizontalAlignment="Right" Margin="20 0" Click="CalculateInterest_Click">Calculate</Button>
                 <Button>Reset</Button>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
             <TextBlock>The results are:</TextBlock>
-            <TextBlock>With product A, you will have:</TextBlock>
-            <TextBlock>With product B, you will have:</TextBlock>
+            <TextBlock>With product A, you will have (£): <TextBlock Text="{Binding SimpleInterest}"/></TextBlock>
+            <TextBlock>With product B, you will have (£): <TextBlock Text="{Binding CompoundInterest}"/></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

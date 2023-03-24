@@ -7,23 +7,56 @@ namespace InvestmentCalculator.ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private decimal _interestRate;
+        private decimal _simpleInterestRate;
+        private decimal _simpleInterest;
+        private decimal _compountInterestRate;
+        private decimal _compountInterest;
         private decimal _investmentAmount;
-        private int _compoundingFrequency;
 
         public InvestmentProductsViewModel()
         {
-            InvestmentAmount = 10000;
+            InvestmentAmount = 10000m;
+            SimpleInterestRate = 3m;
+            CompoundInterestRate = 2.95m;
         }
 
-        public decimal InterestRate
+        public decimal SimpleInterestRate
         {
-            get { return _interestRate; }
+            get { return _simpleInterestRate; }
             set
             {
-                _interestRate = value;
-                OnPropertyChanged(nameof(InterestRate));
-                OnPropertyChanged(nameof(TotalInterestEarned));
+                _simpleInterestRate = value;
+                OnPropertyChanged(nameof(SimpleInterestRate));
+            }
+        }
+
+        public decimal SimpleInterest
+        {
+            get { return _simpleInterest; }
+            set
+            {
+                _simpleInterest = value;
+                OnPropertyChanged(nameof(SimpleInterest));
+            }
+        }
+
+        public decimal CompoundInterestRate
+        {
+            get { return _compountInterestRate; }
+            set
+            {
+                _compountInterestRate = value;
+                OnPropertyChanged(nameof(CompoundInterestRate));
+            }
+        }
+
+        public decimal CompoundInterest
+        {
+            get { return _compountInterest; }
+            set
+            {
+                _compountInterest = value;
+                OnPropertyChanged(nameof(CompoundInterest));
             }
         }
 
@@ -35,38 +68,25 @@ namespace InvestmentCalculator.ViewModel
             {
                 _investmentAmount = value;
                 OnPropertyChanged(nameof(InvestmentAmount));
-                OnPropertyChanged(nameof(TotalInterestEarned));
             }
         }
 
-        public int CompoundingFrequency
+        internal void CalculateInterest()
         {
-            get { return _compoundingFrequency; }
-            set
-            {
-                _compoundingFrequency = value;
-                OnPropertyChanged(nameof(CompoundingFrequency));
-                OnPropertyChanged(nameof(TotalInterestEarned));
-            }
+            decimal timePeriod = 2m; 
+            decimal decimalSimpleInterestRate = SimpleInterestRate / 100m;
+            decimal decimalCompoundInterestRate = CompoundInterestRate / 100m;
+            int compoundingPeriod = 12;
+
+            SimpleInterest = InvestmentAmount * decimalSimpleInterestRate * timePeriod;
+
+            // Calculate compound interest with monthly compounding
+            decimal monthlyInterestRate = decimalCompoundInterestRate / compoundingPeriod;
+            decimal compoundedAmount = InvestmentAmount * (decimal)Math.Pow(1 + (double)monthlyInterestRate, (double)(timePeriod * compoundingPeriod));
+            CompoundInterest = compoundedAmount - InvestmentAmount;
         }
 
 
-        public decimal TotalInterestEarned
-        {
-            get
-            {
-                if (CompoundingFrequency == 1)
-                {
-                    // Simple interest formula
-                    return InvestmentAmount * InterestRate * 2;
-                }
-                else
-                {
-                    // Compound interest formula
-                    return InvestmentAmount * (decimal)Math.Pow(1 + (double)(InterestRate / CompoundingFrequency), CompoundingFrequency * 2) - InvestmentAmount;
-                }
-            }
-        }
 
         private void OnPropertyChanged(string propertyName)
         {

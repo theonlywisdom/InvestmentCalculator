@@ -29,5 +29,11 @@ namespace InvestmentCalculator.View
 
             DataContext = _viewModel;
         }
+
+        private void CalculateInterest_Click(object sender, RoutedEventArgs e)
+        {
+            var interestCalculator = (InvestmentProductsViewModel)DataContext;
+            interestCalculator.CalculateInterest();
+        }
     }
 }
