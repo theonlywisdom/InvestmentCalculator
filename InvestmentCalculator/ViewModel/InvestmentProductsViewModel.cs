@@ -1,15 +1,21 @@
-﻿using System;
+﻿using InvestmentCalculator.Data;
+using System;
 using System.ComponentModel;
 
-namespace InvestmentCalculator
+namespace InvestmentCalculator.ViewModel
 {
-    public class InvestmentOptions : INotifyPropertyChanged
+    public class InvestmentProductsViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private decimal _interestRate;
         private decimal _investmentAmount;
         private int _compoundingFrequency;
+
+        public InvestmentProductsViewModel()
+        {
+            InvestmentAmount = 10000;
+        }
 
         public decimal InterestRate
         {

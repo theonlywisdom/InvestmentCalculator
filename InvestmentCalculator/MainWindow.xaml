@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvestmentCalculator"
-        xmlns:views="clr-namespace:InvestmentCalculator.Views"
+        xmlns:view="clr-namespace:InvestmentCalculator.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" FontSize="20">
     <Window.Resources>
@@ -26,7 +26,7 @@
             </MenuItem>
         </Menu>
         
-        <views:InvestmentProductsView Grid.Row="1"/>
+        <view:InvestmentProductsView Grid.Row="1"/>
 
         <StatusBar Grid.Row="2">
             <StatusBarItem FontSize="20" Content=" (c) Investment Calculator"/>

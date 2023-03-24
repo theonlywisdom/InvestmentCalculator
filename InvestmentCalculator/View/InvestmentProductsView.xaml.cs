@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InvestmentCalculator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InvestmentCalculator.Views
+namespace InvestmentCalculator.View
 {
     /// <summary>
     /// Interaction logic for InvestmentProductsView.xaml
     /// </summary>
     public partial class InvestmentProductsView : UserControl
     {
+        private InvestmentProductsViewModel _viewModel;
         public InvestmentProductsView()
         {
             InitializeComponent();
+            _viewModel = new InvestmentProductsViewModel();
+
+            DataContext = _viewModel;
         }
     }
 }
