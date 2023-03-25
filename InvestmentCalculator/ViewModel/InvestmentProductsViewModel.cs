@@ -71,7 +71,7 @@ namespace InvestmentCalculator.ViewModel
             }
         }
 
-        internal void CalculateInterest()
+        public void CalculateInterest()
         {
             decimal timePeriod = 2m; 
             decimal decimalSimpleInterestRate = SimpleInterestRate / 100m;
