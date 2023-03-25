@@ -78,12 +78,18 @@ namespace InvestmentCalculator.ViewModel
             decimal decimalCompoundInterestRate = CompoundInterestRate / 100m;
             int compoundingPeriod = 12;
 
-            SimpleInterest = InvestmentAmount * decimalSimpleInterestRate * timePeriod;
+            var simpleInterest = InvestmentAmount * decimalSimpleInterestRate * timePeriod;
+            //  bankers rounding
+            var roundSimpleInterest = Math.Round(simpleInterest, 2, MidpointRounding.ToEven); 
+            SimpleInterest = roundSimpleInterest;
 
             // Calculate compound interest with monthly compounding
             decimal monthlyInterestRate = decimalCompoundInterestRate / compoundingPeriod;
             decimal compoundedAmount = InvestmentAmount * (decimal)Math.Pow(1 + (double)monthlyInterestRate, (double)(timePeriod * compoundingPeriod));
-            CompoundInterest = compoundedAmount - InvestmentAmount;
+            var compoundInterest = compoundedAmount - InvestmentAmount;
+            //  bankers rounding
+            var roundCompoundInterest = Math.Round(compoundInterest, 2, MidpointRounding.ToEven);
+            CompoundInterest = roundCompoundInterest;
         }
 
 
